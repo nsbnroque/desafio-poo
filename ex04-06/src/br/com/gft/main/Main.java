@@ -3,6 +3,7 @@ package br.com.gft.main;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import br.com.gft.model.*;
 
@@ -29,10 +30,15 @@ public class Main {
 		
 		String filtro = "Jessica";
 		
+		try {
+		
 		Pessoa pessoa = pessoas.stream().filter(x -> filtro.equals(x.getNome()))
 		.findAny().get();
 		
 		System.out.println(pessoa.getIdade());
+		} catch (NoSuchElementException e) {
+			System.out.println("A pessoa " + filtro + " não está na lista.");
+		}
 		
 		
 	}
